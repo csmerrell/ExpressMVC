@@ -1,0 +1,72 @@
+<div id="home" style="display: none;">
+    <link href="/static/css/compiled/views/home.css" rel="stylesheet" />
+    
+    <div id="vm-carousel" class="code-carousel">
+        <link href='/static/css/compiled/components/blockCarousel.css' rel="stylesheet" />
+
+        <block-carousel id="bc-samples" v-cloak>
+            <block>
+                <block-title>
+                    Demo: Hello World 1
+                </block-title>
+                <block-content>
+                    <pre>
+                        <code>
+                            &lt;div> Hello World! &lt;/div>
+                        </code>
+                    </pre>
+                </block-content>
+                <block-action-list>
+                    <block-action href="/docs" target="_blank">
+                        Nav To Documentation Index
+                    </block-action>
+                </block-action-list>
+            </block>
+            <block>
+                <block-title>
+                    Demo: Hello World 2
+                </block-title>
+                <block-content>
+                    <highlightjs language="html" :code="codeSample2" />                
+                </block-content>
+                <block-action-list>
+                    <block-action :action="myFunc">
+                        Execute myFunc
+                    </block-action>
+                </block-action-list>
+            </block>
+        </block-carousel>
+    </div>
+</div>
+{{> loaders/centerAdjusted loaderId="main-loader" pos="fixed" opacity="opaque"}}
+
+<!-- Loader binding -->
+<script>
+    window.homeEl = document.getElementById("home");
+    window.mainLoaderEl = document.getElementById("main-loader");
+    window.mainLoaderEl.style.display = 'block';
+
+    setTimeout(() => {
+        window.mainLoaderEl.style.display ="none";
+        window.homeEl.style.display = "block";
+    }, 1000)
+</script>
+
+<!-- Block Carousel vm mounting and data config -->
+<script type="module">
+    import "/static/lib/blockCarousel/blockCarouselModularized.js";
+    import { CodeSample1, CodeSample2 } from "/static/lib/exampleFiles/codeSamples.js";
+
+    window.vms["vm-carousel"] = new Vue({
+        el: "#vm-carousel",
+        methods: {
+            myFunc() {
+                alert("hi!");
+            }
+        },
+        data: {
+            codeSample1: CodeSample1,
+            codeSample2: CodeSample2
+        }
+    })
+</script>

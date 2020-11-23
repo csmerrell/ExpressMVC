@@ -1,0 +1,117 @@
+@import './fonts';
+@import './mixins';
+
+//Sass Variables
+$nav-height: 3.25rem;
+$nav-total-offset: $nav-height;
+
+.navbar {
+    @include pure-full-height;
+    height: $nav-total-offset;
+
+    background: var(--clr-primary);
+    color: var(--clr-fonts-black);
+    height: $nav-height;
+    overflow: hidden;
+    z-index: 10;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    .nav-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        
+        .nav-link {
+            display: inline-block;
+            color: var(--clr-fonts-black) !important;
+            line-height: calc(1.25rem + 1px);
+            padding: 1rem;
+
+            &a, a {
+                color: unset !important;
+                text-decoration: none;
+            }
+
+            &:hover {
+                background-color: var(--clr-primary-alt);
+            }
+        }
+
+        .brand {
+            padding: 0;
+            height: 100%;
+            vertical-align: middle;
+            
+            .logo {
+                max-height: 2.75rem;
+                margin: .25rem 3rem;
+            }
+    
+            &:hover {
+                background: transparent;
+            }
+        }
+    
+        @media(max-width: 640px) {
+            .brand .logo {
+                margin: .25rem 1rem;
+            }
+        }        
+    }
+
+    .theme-toggler {
+        box-sizing: border-box;
+        padding: calc((#{$nav-height} - 2rem) / 2) 0; 
+        .theme-front {
+            display: inline-block;
+            top: -.625rem;
+            position: relative;
+            margin-right: .5rem;
+        }
+        .toggle-btn {
+            display:inline-block;
+        }
+
+        .toggler-main {
+            + .toggle-btn {
+                background: var(--clr-accent);
+                &:after,&:before {
+                    color: var(--clr-fonts-black);
+                }
+            }
+            &:checked + .toggle-btn {
+                &:after,&:before {
+                    color: var(--clr-fonts-white);
+                }
+            }
+        }
+
+        @media(max-width: 568px) {
+            .theme-front {
+                display: none;
+            }
+        }
+    }
+
+    @media(max-width: 568px) {
+        .theme-toggler {
+            padding-right: .5em;
+        }
+    }
+}
+
+:root[theme='dark'] {
+    .navbar .brand .logo.blue {
+        display:none;
+    }
+}
+
+:root[theme='light'] {
+    .navbar .brand .logo.pink {
+        display:none;
+    }
+}

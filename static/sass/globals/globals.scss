@@ -1,0 +1,112 @@
+@import './colors';
+@import './fonts';
+@import './navbar';
+@import './footer';
+@import './notifications';
+@import './loader';
+@import './highlightThemes';
+
+body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+.main-body {
+    min-height: calc(100vh - #{$footer-total-offset} - #{$nav-total-offset} - 3rem);
+    margin-bottom: 3rem;
+    &.borderless {
+        margin-top: 0;
+    }
+}
+
+pre {
+    margin: 0;
+}
+
+code {
+    padding: 1rem 2rem !important;
+    border-radius: 2px;
+}
+
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
+
+block-carousel[v-cloak]::before {
+    height: 42rem;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: var(--clr-bg-alt);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--clr-accent);
+
+    &:hover {
+        color: var(--clr-accent-alt);
+    }
+
+    &:active {
+        color: var(--clr-accent-active);
+    }
+
+    &:visited {
+        color: var(--clr-accent-inactive);
+    }
+}
+
+:root[theme='dark'] {
+    a {
+        color: var(--clr-dk-primary-alt);
+
+        &:hover {
+            color: var(--clr-accent-alt);
+        }
+    
+        &:active {
+            color: var(--clr-accent-active);
+        }
+    
+        &:visited {
+            color: var(--clr-accent-inactive);
+        }    
+    }
+}
+
+.pure-button {
+    background-color: var(--clr-accent);
+    color: var(--clr-accent-font);
+
+    &:hover {
+        background-color: var(--clr-accent-alt);
+    }
+
+    &:active {
+        background-color: var(--clr-accent-active);
+    }
+
+    &:disabled {
+        background-color: var(--clr-accent-inactive);
+    }
+}
+
+.align-right {
+    text-align: right;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.module-spacing {
+    height: 6rem;
+}
+
+@media(max-width: 568px) {
+    .auto-hide-sm {
+        display: none;
+    }
+}
